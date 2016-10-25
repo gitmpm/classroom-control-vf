@@ -53,7 +53,7 @@ node default {
   exec { 'new motd':
    command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
    creates => '/etc/motd',
-   path    => ['/usr/bin', '/usr/sbin', '/usr/local/bin/cowsay',],
+   path    => ['/usr/bin', '/usr/sbin', '/usr/local/bin',],
         }
   file { '/root/deleteme':
   ensure => 'absent',
