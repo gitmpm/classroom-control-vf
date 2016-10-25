@@ -50,7 +50,7 @@ node default {
   mode    => '0644',
   content => "This is a note about everything I learned today\n",
   }
-  file { '/root/deleteme'
+  file { '/root/deleteme':
   ensure => 'absent',
   }
 }
