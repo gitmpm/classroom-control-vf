@@ -51,7 +51,7 @@ node default {
   #content => "This is a note about everything I learned today\n",
   #}
   exec { 'new motd':
-   command => 'cowsay 'Welcome to ${::fqdn}!' > /etc/motd',
+   command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
    creates => '/etc/motd',
    path    => ['/usr/bin', '/usr/sbin',],
         }
