@@ -51,6 +51,6 @@ node default {
   content => "This is a note about everything I learned today\n",
   }
   file { '/root/deleteme'
-  ensure  => 'absent',
+  ensure => 'absent',
   }
 }
