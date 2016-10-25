@@ -44,12 +44,16 @@ node default {
   #   class { 'my_class': }
   include role::classroom
   file { '/etc/motd':
-  ensure  => file,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => "This is a note about everything I learned today\n",
-  }
+  #ensure  => file,
+  #owner   => 'root',
+  #group   => 'root',
+  #mode    => '0644',
+  #content => "This is a note about everything I learned today\n",
+  #}
+  exec { 'cowsay 'Welcome to ${::fqdn}!' > /etc/motd':
+   creates => '/etc/motd,
+   path    => ['/usr/bin', '/usr/sbin',],
+        }
   file { '/root/deleteme':
   ensure => 'absent',
   }
