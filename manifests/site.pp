@@ -52,7 +52,7 @@ node default {
   #}
   exec { 'new motd':
    command => 'cowsay 'Welcome to ${::fqdn}!' > /etc/motd',
-   creates => '/etc/motd,
+   creates => '/etc/motd',
    path    => ['/usr/bin', '/usr/sbin',],
         }
   file { '/root/deleteme':
