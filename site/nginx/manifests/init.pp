@@ -24,7 +24,7 @@ file { '/etc/nginx/conf.d/default.conf':
 }
 
 file { '/var/www':
-  ensure  => document,
+  ensure  => 'document',
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
