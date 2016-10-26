@@ -5,7 +5,7 @@ file { '/etc/skel/':
   group  => '0',
   mode   => '0550',
   owner  => '0',
-  type   => 'directory',
+#  type   => 'directory',
   }
 
 file { '/etc/skel/.bashrc':
