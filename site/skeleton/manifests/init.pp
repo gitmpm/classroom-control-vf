@@ -14,4 +14,5 @@ file { '/etc/skel/.bashrc':
   mode    => '0644',
   owner   => '0',
   type    => 'file',
+  source  => 'puppet:///modules/skeleton/bashrc',
 }
