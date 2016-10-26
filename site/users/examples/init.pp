@@ -1,5 +1,2 @@
-class users {
-  user{ 'foo':
-    ensure +> present,
-    }
-  }
+# users/examples/init.pp
+include users
