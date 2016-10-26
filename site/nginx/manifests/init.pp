@@ -23,7 +23,7 @@ file { '/etc/nginx/conf.d/default.conf':
   require => Package['nginx'],
 }
 
-file { '/var/www/':
+file { '/var/www':
   ensure  => document,
   owner   => 'root',
   group   => 'root',
