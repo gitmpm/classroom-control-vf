@@ -6,7 +6,7 @@ package { 'nginx':
 }
 
 file { '/etc/nginx/nginx.conf':
-  ensure  => file,
+  ensure  => 'file',
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
@@ -15,7 +15,7 @@ file { '/etc/nginx/nginx.conf':
 }
 
 file { '/etc/nginx/conf.d/default.conf':
-  ensure  => file,
+  ensure  => 'file',
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
@@ -32,7 +32,7 @@ file { '/var/www':
 }
 
 file { '/var/www/index.html':
-  ensure  => file,
+  ensure  => 'file',
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
