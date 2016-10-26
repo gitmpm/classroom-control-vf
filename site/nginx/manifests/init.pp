@@ -24,18 +24,18 @@ file { '/etc/nginx/conf.d/default.conf':
 }
 
 file { '/etc/nginx/conf.d':
-  ensure  => document,
+  ensure  => directory,
   owner   => 'root',
   group   => 'root',
-  mode    => '0644',
+  mode    => '0755',
   require => Package['nginx'],
 }
 
 file { '/var/www':
-  ensure  => document,
+  ensure  => directory,
   owner   => 'root',
   group   => 'root',
-  mode    => '0644',
+  mode    => '0-755',
   require => Package['nginx'],
 }
 
