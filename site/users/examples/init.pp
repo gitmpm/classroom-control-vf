@@ -1,1 +1,1 @@
-include users
+include class::users
