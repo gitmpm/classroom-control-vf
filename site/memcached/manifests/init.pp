@@ -1,3 +1,4 @@
+class skeleton {
 package { 'memcached':
   ensure => present,
 }
@@ -15,4 +16,5 @@ service { 'memached':
   ensure    => running,
   enable    => true,
   subscribe => File['/etc/sysconfig/memcached'],
+}
 }
