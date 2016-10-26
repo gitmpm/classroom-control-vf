@@ -58,4 +58,10 @@ node default {
   file { '/root/deleteme':
   ensure => 'absent',
   }
+  }
+host { 'testing.puppetlabs.vm':
+  ensure => 'present',
+  ip     => '127.0.0.1',
+  target => '/etc/hosts',
+}
 }
