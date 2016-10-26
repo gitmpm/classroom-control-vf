@@ -6,7 +6,7 @@ file { '/etc/skel/':
   mode   => '0550',
   owner  => '0',
   type   => 'directory',
-}
+  }
 
 file { '/etc/skel/.bashrc':
   ensure  => 'file',
@@ -15,4 +15,5 @@ file { '/etc/skel/.bashrc':
   owner   => '0',
   type    => 'file',
   source  => 'puppet:///modules/skeleton/bashrc',
+  }
 }
