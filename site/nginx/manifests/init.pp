@@ -14,7 +14,33 @@ file { '/etc/nginx/nginx.conf':
   require => Package['nginx'],
 }
 
-service { 'memcached':
+file { '/etc/nginx/conf.d/default.conf':
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  source  => 'puppet:///modules/nginx/default.conf',
+  require => Package['nginx'],
+}
+
+file { '/var/www/':
+  ensure  => document,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  require => Package['nginx'],
+}
+
+file { '/var/www/index.html':
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  source  => 'puppet:///modules/nginx/index.html',
+  require => Package['nginx'],
+}
+
+service { 'nginx':
   ensure    => running,
   enable    => true,
   subscribe => File['/etc/nginx/nginx.conf'],
