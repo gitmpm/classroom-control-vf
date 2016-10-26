@@ -1,1 +1,5 @@
-include class::users
+class users {
+  user{ 'foo':
+    ensure +> present,
+    }
+  }
