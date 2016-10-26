@@ -35,7 +35,7 @@ file { '/var/www':
   ensure  => directory,
   owner   => 'root',
   group   => 'root',
-  mode    => '0-755',
+  mode    => '0755',
   require => Package['nginx'],
 }
 
