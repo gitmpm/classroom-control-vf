@@ -10,6 +10,7 @@ class nginx {
     owner => 'root',
     group => 'root',
     mode  => '0644',
+    ensure  => 'file'
   }
   
   package { 'nginx':
@@ -21,19 +22,16 @@ class nginx {
   }
   
   file { "${www}/index.html":
-    ensure => file,
     source => "${nginx_files}/index.html",
   }
   
   file { "${conf_dir}/default.conf":
-    ensure  => file,
     source  => "${nginx_files}/default.conf",
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
   
   file { "${nginx_dir}/nginx.conf":
-    ensure  => file,
     source  => "${nginx_files}/nginx.conf",
     require => Package['nginx'],
     notify  => Service['nginx'],
