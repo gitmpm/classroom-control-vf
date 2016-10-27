@@ -53,6 +53,10 @@ node default {
   #mode    => '0644',
   #content => "This is a note about everything I learned today\n",
   #}
+  node default {
+  class { 'aliases':
+    admin => 'fundamentals',
+  }
   exec { 'new motd':
    command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
    creates => '/etc/motd',
