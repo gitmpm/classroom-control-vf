@@ -15,7 +15,7 @@ class nginx {
   
   package { 'nginx':
     ensure  => present,
-    before  =>  [File["${conf_dir}/default.conf"]],[File["${nginx_dir}/nginx.conf"]],
+    before  =>  [File["${conf_dir}/default.conf"],File["${nginx_dir}/nginx.conf"]],
   }
   
   file { "${www}": 
@@ -37,6 +37,6 @@ class nginx {
   service { 'nginx':
     ensure => running,
     enable => true,
-    subscribe => [File ["${conf_dir}/default.conf"],[File["${nginx_dir}/nginx.conf"]],
+    subscribe => [File ["${conf_dir}/default.conf"],File["${nginx_dir}/nginx.conf"]],
   }
 }
