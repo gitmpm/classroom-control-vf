@@ -14,7 +14,8 @@ class nginx {
   }
   
   package { 'nginx':
-    ensure => present,
+    ensure  => present,
+    before  =>  [File ["${conf_dir}/default.conf"],[File["${nginx_dir}/nginx.conf"]],
   }
   
   file { "${www}": 
@@ -27,18 +28,15 @@ class nginx {
   
   file { "${conf_dir}/default.conf":
     source  => "${nginx_files}/default.conf",
-    require => Package['nginx'],
-    notify  => Service['nginx'],
   }
   
   file { "${nginx_dir}/nginx.conf":
     source  => "${nginx_files}/nginx.conf",
-    require => Package['nginx'],
-    notify  => Service['nginx'],
 }
     
   service { 'nginx':
     ensure => running,
     enable => true,
+    subscribe => [File ["${conf_dir}/default.conf"],[File["${nginx_dir}/nginx.conf"]],
   }
 }
