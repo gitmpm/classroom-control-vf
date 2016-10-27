@@ -5,7 +5,7 @@ define users::managed_user {
     group =>  $title,
   }
   
-  group { '$title':
+  group { "$title":
     ensure => present,
   }
   
@@ -14,7 +14,7 @@ define users::managed_user {
     mode      => '0700',
     owner     => $title,
   }
-    file { "/home/$title/.bashrc':
+    file { "/home/$title/.bashrc":
     ensure = file,
     mode  => '0644',
     owner  => $title,
