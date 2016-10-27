@@ -16,25 +16,25 @@ class nginx {
     ensure => present,
   }
   
-  file { ${www}: 
+  file { "${www}": 
     ensure => directory,
   }
   
-  file { ${www}/index.html:
+  file { "${www}/index.html":
     ensure => file,
-    source => ${nginx_files}/index.html,
+    source => "${nginx_files}/index.html",
   }
   
-  file { ${conf_dir}/default.conf:
+  file { "${conf_dir}/default.conf":
     ensure  => file,
-    source  => ${nginx_files}/default.conf,
+    source  => "${nginx_files}/default.conf",
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
   
-  file { ${nginx_dir}/nginx.conf:
+  file { "${nginx_dir}/nginx.conf":
     ensure  => file,
-    source  => ${nginx_files}/nginx.conf,
+    source  => "${nginx_files}/nginx.conf",
     require => Package['nginx'],
     notify  => Service['nginx'],
 }
