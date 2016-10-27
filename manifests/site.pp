@@ -62,10 +62,9 @@ node default {
   ensure => 'absent',
   }
   
-  if $is_virtual == true{
-  notice ("This is a VM of the type $virtual")
+  if $::is_virtual == true {
+  notice ("This is a VM of the type ${virtual}")
   } else {
-  
  notify ("This is not a VM")
    }
 
