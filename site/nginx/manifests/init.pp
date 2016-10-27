@@ -6,6 +6,11 @@ class nginx {
   $nginx_dir = '/etc/nginx'
   $nginx_files = 'puppet:///modules/nginx'
   
+  File {
+    owner => 'root',
+    group => 'root',
+    mode  => '0644',
+  }
   
   package { 'nginx':
     ensure => present,
@@ -13,24 +18,15 @@ class nginx {
   
   file { ${www}: 
     ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
   }
   
   file { ${www}/index.html:
     ensure => file,
-    mode   => '0644',
-    owner  => 'root',
-    group  => 'root',
     source => ${nginx_files}/index.html,
   }
   
   file { ${conf_dir}/default.conf:
     ensure  => file,
-    mode    => '0644',
-    owner   => 'root',
-    group   => 'root',
     source  => ${nginx_files}/default.conf,
     require => Package['nginx'],
     notify  => Service['nginx'],
@@ -38,9 +34,6 @@ class nginx {
   
   file { ${nginx_dir}/nginx.conf:
     ensure  => file,
-    mode    => '0644',
-    owner   => 'root',
-    group   => 'root',
     source  => ${nginx_files}/nginx.conf,
     require => Package['nginx'],
     notify  => Service['nginx'],
