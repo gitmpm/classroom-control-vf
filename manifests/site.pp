@@ -63,7 +63,7 @@ node default {
   }
   
   if $is_virtual == true{
-  notify ("This is a VM of the type $virtual")
+  notice ("This is a VM of the type $virtual")
   } else {
   
  notify ("This is not a VM")
