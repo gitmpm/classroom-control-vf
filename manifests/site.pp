@@ -61,6 +61,14 @@ node default {
   file { '/root/deleteme':
   ensure => 'absent',
   }
+  
+  if $is_virtual == true{
+  notify ("This is a VM of the type $virtual")
+  } else {
+  
+ notify ("This is not a VM")
+   }
+
 host { 'testing.puppetlabs.vm':
   ensure => 'present',
   ip     => '127.0.0.1',
