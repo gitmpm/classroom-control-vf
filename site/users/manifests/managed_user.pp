@@ -19,6 +19,6 @@ define users::managed_user {
     ensure => file,
     mode  => '0644',
     owner  => $title,
-    sources => 'puppet:///modules/users/bashrc'
+    source => 'puppet:///modules/users/bashrc'
   }
 }
