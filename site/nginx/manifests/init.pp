@@ -1,6 +1,16 @@
 # nginx/manifests/init.pp
 class nginx (
 
+    $docroot = $nginx::params::docroot,
+    $logsdir = $nginx::params::logsdir,
+    $confdir = $nginx::params::confdir,
+    $blckdir = $nginx::params::blckdir,
+    $pkgname = $nginx::params::pkgname,
+    $fileown = $nginx::params::fileown,
+    $filegrp = $nginx::params::filegrp,
+    $svcname = $nginx::params::svcname,
+    $svcuser = $nginx::params::svcuser,
+
   $root = undef,
 
 ) {
