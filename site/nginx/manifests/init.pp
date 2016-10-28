@@ -7,7 +7,7 @@ class nginx {
   $nginx_files = 'puppet:///modules/nginx'
   
   case $::osfamily {
-    'RedHat','Debian' {
+    'RedHat','Debian' : {
       $docroot = '/var/www'
       $logdir = '/var/log/nginx'
       $confdir = '/etc/nginx'
