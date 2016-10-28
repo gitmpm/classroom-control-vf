@@ -48,7 +48,7 @@ class nginx {
   }
   
   file { "${conf_dir}/default.conf":
-    content  => "${nginx_files}/default.default.epp",
+    content  => "${nginx_files}/default.epp",
   }
   
   file { "${nginx_dir}/nginx.conf":
