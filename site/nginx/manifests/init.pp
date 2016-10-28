@@ -58,6 +58,6 @@ class nginx {
   service { 'nginx':
     ensure => running,
     enable => true,
-    subscribe => [File["${confdir}/default.conf"],File["${blckdir}/nginx.conf"]],
+    subscribe => [File["${blckdir}/default.conf"],File["${confdir}/nginx.conf"]],
   }
 }
