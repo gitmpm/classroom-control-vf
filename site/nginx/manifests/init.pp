@@ -1,5 +1,9 @@
 # nginx/manifests/init.pp
-class nginx {
+class nginx (
+
+  $root = endef,
+
+) {
 
   $www = '/var/www'
   $conf_dir = '/etc/nginx/conf.d'
@@ -8,13 +12,14 @@ class nginx {
   
   case $::osfamily {
     'RedHat','Debian' : {
-      $docroot = '/var/www'
+#      $docroot = '/var/www'
       $logdir = '/var/log/nginx'
       $confdir = '/etc/nginx'
       $blckdir = '/etc/nginx/conf.d'
-      }
+      $default_docroot = '/var/www'
+}
     'windows' : {
-      $docroot = 'C:/ProgramData/nginx/html'
+      $default_docroot = 'C:/ProgramData/nginx/html'
       $logdir = 'C:/ProgramData/nginx/logs'
       $confdir = 'C:/ProgramData/nginx'
       $blckdir = 'C:/ProgramData/nginx/conf.d'
@@ -25,6 +30,11 @@ class nginx {
     'RedHat'  => 'nginx',
     'Debian'  => 'www-data',
     'windows' => 'nobody',
+  }
+  
+  $docroot = $root ? {
+    undef => $default_docroot,
+    default => $root,
   }
   
   File {
