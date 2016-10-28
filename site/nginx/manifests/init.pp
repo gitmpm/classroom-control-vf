@@ -36,7 +36,7 @@ class nginx {
   
   package { 'nginx':
     ensure  => present,
-    before  =>  [File["${$blckdir}/default.conf"],File["${confdir}/nginx.conf"]],
+    #before  =>  [File["${$blckdir}/default.conf"],File["${confdir}/nginx.conf"]],
   }
   
   file { "${docroot}": 
@@ -58,6 +58,6 @@ class nginx {
   service { 'nginx':
     ensure => running,
     enable => true,
-    subscribe => [File["${confdir}/default.conf"],File["${blckdir}/nginx.conf"]],
+    #subscribe => [File["${confdir}/default.conf"],File["${blckdir}/nginx.conf"]],
   }
 }
