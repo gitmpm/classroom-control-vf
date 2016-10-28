@@ -1,7 +1,7 @@
 # nginx/manifests/init.pp
 class nginx (
 
-  $root = endef,
+  $root = undef,
 
 ) {
 
