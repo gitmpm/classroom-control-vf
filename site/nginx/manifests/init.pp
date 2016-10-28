@@ -13,39 +13,39 @@ class nginx (
 
   $root = undef,
 
-) {
+) inherits nginx::params {
 
   $www = '/var/www'
   $conf_dir = '/etc/nginx/conf.d'
   $nginx_dir = '/etc/nginx'
   $nginx_files = 'puppet:///modules/nginx'
   
-  case $::osfamily {
-    'RedHat','Debian' : {
+  #case $::osfamily {
+#    'RedHat','Debian' : {
 #      $docroot = '/var/www'
-      $logdir = '/var/log/nginx'
-      $confdir = '/etc/nginx'
-      $blckdir = '/etc/nginx/conf.d'
-      $default_docroot = '/var/www'
-}
-    'windows' : {
-      $default_docroot = 'C:/ProgramData/nginx/html'
-      $logdir = 'C:/ProgramData/nginx/logs'
-      $confdir = 'C:/ProgramData/nginx'
-      $blckdir = 'C:/ProgramData/nginx/conf.d'
+      #$logdir = '/var/log/nginx'
+      #$confdir = '/etc/nginx'
+      #$blckdir = '/etc/nginx/conf.d'
+      #$default_docroot = '/var/www'
+#}
+    #'windows' : {
+      #$default_docroot = 'C:/ProgramData/nginx/html'
+      #$logdir = 'C:/ProgramData/nginx/logs'
+      #$confdir = 'C:/ProgramData/nginx'
+      #$blckdir = 'C:/ProgramData/nginx/conf.d'
       }
     }
       
-  $svcuser = $::osfamily ? {
-    'RedHat'  => 'nginx',
-    'Debian'  => 'www-data',
-    'windows' => 'nobody',
-  }
+  #$svcuser = $::osfamily ? {
+#    'RedHat'  => 'nginx',
+#    'Debian'  => 'www-data',
+#    'windows' => 'nobody',
+#  }
   
-  $docroot = $root ? {
-    undef => $default_docroot,
-    default => $root,
-  }
+ # $docroot = $root ? {
+ #   undef => $default_docroot,
+ #   default => $root,
+ # }
   
   File {
     owner => 'root',
