@@ -33,8 +33,8 @@ class nginx (
       #$logdir = 'C:/ProgramData/nginx/logs'
       #$confdir = 'C:/ProgramData/nginx'
       #$blckdir = 'C:/ProgramData/nginx/conf.d'
-      }
-    }
+#      }
+#    }
       
   #$svcuser = $::osfamily ? {
 #    'RedHat'  => 'nginx',
