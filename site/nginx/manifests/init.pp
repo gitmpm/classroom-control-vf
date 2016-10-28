@@ -13,12 +13,12 @@ class nginx {
       $confdir = '/etc/nginx'
       $blckdir = '/etc/nginx/conf.d'
       }
-    'windows' : {
-      $docroot = 'C:/ProgramData/nginx/html'
-      $logdir = 'C:/ProgramData/nginx/logs'
-      $confdir = 'C:/ProgramData/nginx'
-      $blckdir = 'C:/ProgramData/nginx/conf.d'
-      }
+ #   'windows' : {
+ #     $docroot = 'C:/ProgramData/nginx/html'
+ #     $logdir = 'C:/ProgramData/nginx/logs'
+ #     $confdir = 'C:/ProgramData/nginx'
+ #     $blckdir = 'C:/ProgramData/nginx/conf.d'
+ #     }
     }
       
     $svcuser = $::osfamily ? {
