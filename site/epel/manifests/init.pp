@@ -1,0 +1,3 @@
+class epel {
+  include epel
+}
