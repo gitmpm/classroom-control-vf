@@ -13,18 +13,18 @@ class nginx {
       $confdir = '/etc/nginx'
       $blckdir = '/etc/nginx/conf.d'
       }
- #   'windows' : {
- #     $docroot = 'C:/ProgramData/nginx/html'
- #     $logdir = 'C:/ProgramData/nginx/logs'
- #     $confdir = 'C:/ProgramData/nginx'
- #     $blckdir = 'C:/ProgramData/nginx/conf.d'
- #     }
+    'windows' : {
+      $docroot = 'C:/ProgramData/nginx/html'
+      $logdir = 'C:/ProgramData/nginx/logs'
+      $confdir = 'C:/ProgramData/nginx'
+      $blckdir = 'C:/ProgramData/nginx/conf.d'
+      }
     }
       
     $svcuser = $::osfamily ? {
     'RedHat' => 'nginx',
     'Debian' => 'www-data'
- #   'windows' => 'nobody',
+    'windows' => 'nobody',
     }
   
   File {
@@ -36,7 +36,7 @@ class nginx {
   
   package { 'nginx':
     ensure  => present,
-    #before  =>  [File["${$blckdir}/default.conf"],File["${confdir}/nginx.conf"]],
+    before  =>  [File["${$blckdir}/default.conf"],File["${confdir}/nginx.conf"]],
   }
   
   file { "${docroot}": 
@@ -47,17 +47,17 @@ class nginx {
     source => "${nginx_files}/index.html",
   }
   
-  #file { "${conf_dir}/default.conf":
-    #content  => "${nginx_files}/default.default.epp",
-  #}
+  file { "${conf_dir}/default.conf":
+    content  => "${nginx_files}/default.default.epp",
+  }
   
- # file { "${nginx_dir}/nginx.conf":
-    #content  => "${nginx_files}/nginx.conf.epp",
-#}
+  file { "${nginx_dir}/nginx.conf":
+    content  => "${nginx_files}/nginx.conf.epp",
+}
     
   service { 'nginx':
     ensure => running,
     enable => true,
-    #subscribe => [File["${confdir}/default.conf"],File["${blckdir}/nginx.conf"]],
+    subscribe => [File["${confdir}/default.conf"],File["${blckdir}/nginx.conf"]],
   }
 }
