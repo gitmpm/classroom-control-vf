@@ -6,6 +6,27 @@ class nginx {
   $nginx_dir = '/etc/nginx'
   $nginx_files = 'puppet:///modules/nginx'
   
+  case $::osfamily : {
+    'RedHat','Debian' {
+      $docroot = '/var/www'
+      $logdir = '/var/log/nginx'
+      $confdir = '/etc/nginx'
+      $blckdir = '/etc/nginx/conf.d'
+      }
+    'windows' : {
+      $docroot = 'C:/ProgramData/nginx/html'
+      $logdir = 'C:/ProgramData/nginx/logs'
+      $confdir = 'C:/ProgramData/nginx'
+      $blckdir = 'C:/ProgramData/nginx/conf.d'
+      }
+    }
+      
+    $svcuser = = $::osfamily ? {
+    'RedHat' => 'nginx',
+    'Debian' => 'www-data'
+    'windows' => 'nobody',
+    }
+  
   File {
     owner => 'root',
     group => 'root',
@@ -15,14 +36,14 @@ class nginx {
   
   package { 'nginx':
     ensure  => present,
-    before  =>  [File["${conf_dir}/default.conf"],File["${nginx_dir}/nginx.conf"]],
+    before  =>  [File["${$blckdir}/default.conf"],File["${confdir}/nginx.conf"]],
   }
   
-  file { "${www}": 
+  file { "${docroot}": 
     ensure => directory,
   }
   
-  file { "${www}/index.html":
+  file { "${docroot}/index.html":
     source => "${nginx_files}/index.html",
   }
   
@@ -37,6 +58,6 @@ class nginx {
   service { 'nginx':
     ensure => running,
     enable => true,
-    subscribe => [File["${conf_dir}/default.conf"],File["${nginx_dir}/nginx.conf"]],
+    subscribe => [File["${confdir}/default.conf"],File["${blckdir}/nginx.conf"]],
   }
 }
