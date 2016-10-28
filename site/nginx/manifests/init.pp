@@ -47,13 +47,13 @@ class nginx {
     source => "${nginx_files}/index.html",
   }
   
-  file { "${conf_dir}/default.conf":
-    content  => "${nginx_files}/default.default.epp",
-  }
+  #file { "${conf_dir}/default.conf":
+    #content  => "${nginx_files}/default.default.epp",
+  #}
   
-  file { "${nginx_dir}/nginx.conf":
-    content  => "${nginx_files}/nginx.conf.epp",
-}
+ # file { "${nginx_dir}/nginx.conf":
+    #content  => "${nginx_files}/nginx.conf.epp",
+#}
     
   service { 'nginx':
     ensure => running,
