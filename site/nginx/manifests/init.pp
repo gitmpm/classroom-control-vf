@@ -48,11 +48,11 @@ class nginx {
   }
   
   file { "${conf_dir}/default.conf":
-    source  => "${nginx_files}/default.conf",
+    content  => "${nginx_files}/default.default.epp",
   }
   
   file { "${nginx_dir}/nginx.conf":
-    source  => "${nginx_files}/nginx.conf",
+    content  => "${nginx_files}/nginx.conf.epp",
 }
     
   service { 'nginx':
